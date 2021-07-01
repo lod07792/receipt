@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class cafe_receipt {
 
-	public static ArrayList<receipt_arr> arr1 = new ArrayList<receipt_arr>();
+	
 	public static void main( String[] args)
 	{	
 		Connection conn = null;
@@ -22,6 +22,7 @@ public class cafe_receipt {
 		int price =0;
 		int goods_number=0;
 		int quantity =0;
+		 ArrayList<receipt_arr> arr1 = new ArrayList<receipt_arr>();
 		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -31,8 +32,6 @@ public class cafe_receipt {
 			e1.printStackTrace();
 		}
 	
-
-		
 		while(true)
 		{	
 			
@@ -117,8 +116,6 @@ public class cafe_receipt {
 			
 		}
 		
-		System.out.println();
-		System.out.println();
 		System.out.printf("-------------------------------------------------------------\n");
 		System.out.printf("%s %52d\n","합   계:" ,sum);
 		System.out.printf("%s %52d\n","공급가액:", sum);
@@ -153,11 +150,10 @@ public class cafe_receipt {
 				 pre.setInt(2, arr1.get(i).price);
 				 pre.setInt(3, arr1.get(i).quantity);
 				 pre.setInt(4, arr1.get(i).quantity * arr1.get(i).price);
-				 
-				 int cnt = pre.executeUpdate(); 
-				 System.out.println(cnt + "건이 실행되었습니다.");
+		
 				 
 			}
+			pre.executeUpdate();
 			rset.close(); 
 			conn.close(); 
 			stmt.close(); 
@@ -166,18 +162,17 @@ public class cafe_receipt {
 			e.printStackTrace();
 		}
 		System.out.println();
+		System.out.println("데이터베이스에 매출 입력 완료");
+		System.out.println("---------------------------------------------------------------");
+		System.out.println("1. 메인화면으로 2. 프로그램 종료");
+		System.out.println();System.out.println();
 		
-
-
-
-
-		
+		if(scan.nextInt()==1)
+			main(args);
+		System.out.println("===========================시스템 종료============================");
 	
+		
+		
 
-		
-		
-		
-		
-		
 	}
 }
