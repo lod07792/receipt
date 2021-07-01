@@ -41,8 +41,6 @@ public class cafe_receipt {
 			System.out.println("개수는? : ");
 			quantity = scan.nextInt();
 		
-					
-			
 			try {
 				stmt = conn.createStatement();
 				rset = stmt.executeQuery("select * from goods where number =" + goods_number); 
@@ -64,26 +62,16 @@ public class cafe_receipt {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				} 
-			
-					 
-				
-					
-				
-					//상품번호 입력받고 갯수 총합 에버랜드처럼 ㅇㅇㅇㅇㅇㅇ
-				
-				
 		
-			
+					//상품번호 입력받고 갯수 총합 에버랜드처럼 ㅇㅇㅇㅇㅇㅇ
+
 			System.out.println("주문을 추가 하시겠습니까??? 1.추가 2.종료 ");
 			
 			if(scan.nextInt() == 2)
 				break;
-			
-		
+	
 		}
 		
-		System.out.println();
-		System.out.println();
 		System.out.println();
 		System.out.println();
 		System.out.printf("-------------------------------------------------------------\n");
@@ -111,9 +99,7 @@ public class cafe_receipt {
 			sum+=(arr1.get(i).price*arr1.get(i).quantity);
 			System.out.printf("%12s%16d%16d%14d\n",arr1.get(i).name,arr1.get(i).price,arr1.get(i).quantity,
 					arr1.get(i).price*arr1.get(i).quantity);
-			
-	
-			
+		
 		}
 		
 		System.out.printf("-------------------------------------------------------------\n");
@@ -140,7 +126,6 @@ public class cafe_receipt {
 		
 		try {
 			
-			
 			String insert = "insert into revenue(name,price,quantity,totalprice) values(?,?,?,?)";
 			PreparedStatement pre = conn.prepareStatement(insert);
 			for(int i=0; i<arr1.size();i++)
@@ -151,9 +136,9 @@ public class cafe_receipt {
 				 pre.setInt(3, arr1.get(i).quantity);
 				 pre.setInt(4, arr1.get(i).quantity * arr1.get(i).price);
 		
-				 
 			}
 			pre.executeUpdate();
+		
 			rset.close(); 
 			conn.close(); 
 			stmt.close(); 
@@ -164,12 +149,13 @@ public class cafe_receipt {
 		System.out.println();
 		System.out.println("데이터베이스에 매출 입력 완료");
 		System.out.println("---------------------------------------------------------------");
-		System.out.println("1. 메인화면으로 2. 프로그램 종료");
-		System.out.println();System.out.println();
+		System.out.println("1. 새로운 고객 주문 받기 2. 프로그램 종료");
+		System.out.println();
 		
 		if(scan.nextInt()==1)
 			main(args);
-		System.out.println("===========================시스템 종료============================");
+		else
+			System.out.println("===========================시스템 종료============================");
 	
 		
 		
